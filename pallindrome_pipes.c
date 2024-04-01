@@ -57,9 +57,6 @@ int main() {
         close(pipefd[0]); // Close the reading end of the pipe
     } else { // Child process
         close(pipefd[1]); // Close the writing end of the pipe
-
-        printf("Child process received strings and is checking for palindromes...\n");
-
         while (read(pipefd[0], buffer, BUFFER_SIZE) > 0) { // Read from the pipe
             if (isPalindrome(buffer)) {
                 printf("Palindrome found: %s\n", buffer);
