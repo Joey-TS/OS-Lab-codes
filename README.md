@@ -1,4 +1,4 @@
-This repository contains the Operating Lab codes for B.Tech CS in CUSAT. <br>
+This repository contains the Operating System lab codes for B.Tech CS in CUSAT. <br>
 
 <b>Note : </b> It is highly advised that you practise creating the programs yourself and leaning how it works. This repository is meant to help if you are stuck/need a reference to understand from. <br>
 
