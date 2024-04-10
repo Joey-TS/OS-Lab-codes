@@ -28,22 +28,23 @@ int main()
         // it is useful 
         short_P=9;
         for(int i=0;i<n;i++)
-		{if(a[i].BT<a[short_P].BT && (a[i].AT<=t && a[i].BT>0))
-		    {short_P=i;}
-		}
+            {
+            if(a[i].BT<a[short_P].BT && (a[i].AT<=t && a[i].BT>0))
+                {short_P=i;}
+            }
         
         a[short_P].BT=a[short_P].BT-1;
         
 
         if(a[short_P].BT==0)
-        {
-            count++;
-            a[short_P].WT=t+1-a[short_P].AT-temp[short_P];
-            a[short_P].TAT=t+1-a[short_P].AT;
+            {
+                count++;
+                a[short_P].WT=t+1-a[short_P].AT-temp[short_P];
+                a[short_P].TAT=t+1-a[short_P].AT;
 
-            total_WT=total_WT+a[short_P].WT;
-            total_TAT=total_TAT+a[short_P].TAT;
-        }
+                total_WT=total_WT+a[short_P].WT;
+                total_TAT=total_TAT+a[short_P].TAT;
+            }
         
         
         
