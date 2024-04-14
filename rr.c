@@ -6,7 +6,7 @@
         printf("Enter Total Number of Processes:");
         scanf("%d", &n);
         int wait_time = 0, ta_time = 0, arr_time[15], burst_time[15], temp_burst_time[15];
-        int x = n;
+        int processes_left = n;
         //Input details of processes
         for(int i = 0; i < n; i++)
         {
@@ -22,30 +22,30 @@
         printf("Enter Time Slot:");
         scanf("%d", &time_slot);
         //Total indicates total time
-        //counter indicates which process is executed
-        int total = 0,  counter = 0,i;
+        //current_process indicates which process is executed
+        int total = 0,  current_process = 0,i;
         printf("Process ID       Burst Time       Arrival Time       Turnaround Time      Waiting Time\n");
-        for(total=0, i = 0; x!=0; )  
+        for(total=0, i = 0; processes_left!=0; )  
         {  
             // define the conditions
             if(temp_burst_time[i] <= time_slot && temp_burst_time[i] > 0)    
             {  
                 total = total + temp_burst_time[i];  
                 temp_burst_time[i] = 0;  
-                counter=1;  
+                current_process=1;  
             }     
             else if(temp_burst_time[i] > 0)  
             {  
                 temp_burst_time[i] = temp_burst_time[i] - time_slot;  
                 total  += time_slot;    
             }  
-            if(temp_burst_time[i]==0 && counter==1)  
+            if(temp_burst_time[i]==0 && current_process==1)  
             {
-                x--; //decrement the process no.  
+                processes_left--; //decrement the process no.  
                 printf("\nProcess No %d  \t\t %d\t\t%d\t\t %d\t\t\t %d", i+1, burst_time[i],arr_time[i],total-arr_time[i], total-arr_time[i]-burst_time[i]);  
                 wait_time = wait_time+total-arr_time[i]-burst_time[i];  
                 ta_time += total -arr_time[i];
-                counter =0;     
+                current_process =0;     
             }  
             if(i==n-1)  
                 {i=0;}  

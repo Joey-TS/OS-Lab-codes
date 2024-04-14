@@ -34,7 +34,6 @@ int main()
     pipe(arr_pallindromes);         // Create another pipe for communication
     
     int pid = fork();               // Create a child process
-    
     if(pid == 0) 
         {                                // Child process
         close(no_of_input[1]);           // Close write end of pipe 1
