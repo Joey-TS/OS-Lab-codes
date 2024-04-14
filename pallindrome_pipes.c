@@ -26,27 +26,27 @@ int checkPalindrome(char *str) {
 // Main function
 int main() 
 {
-    int size_pipe[2], size_pipe_2[2], arr_pipe[2], arr_pipe_2[2];  // Declaration of pipe file descriptors
+    int no_of_input[2], no_of_pal[2], arr_input_strings[2], arr_pallindromes[2];  // Declaration of pipe file descriptors
     
-    pipe(size_pipe);        // Create pipe for communication between parent and child processes
-    pipe(size_pipe_2);      // Create another pipe for communication
-    pipe(arr_pipe);         // Create pipe for communication
-    pipe(arr_pipe_2);       // Create another pipe for communication
+    pipe(no_of_input);              // Create pipe for communication between parent and child processes
+    pipe(no_of_pal);                // Create another pipe for communication
+    pipe(arr_input_strings);        // Create pipe for communication
+    pipe(arr_pallindromes);         // Create another pipe for communication
     
-    int pid = fork();       // Create a child process
+    int pid = fork();               // Create a child process
     
     if(pid == 0) 
-        {          // Child process
-        close(size_pipe[1]);        // Close write end of pipe 1
-        close(size_pipe_2[0]);      // Close read end of pipe 2
-        close(arr_pipe[1]);         // Close write end of pipe 3
-        close(arr_pipe_2[0]);       // Close read end of pipe 4
+        {                                // Child process
+        close(no_of_input[1]);           // Close write end of pipe 1
+        close(no_of_pal[0]);             // Close read end of pipe 2
+        close(arr_input_strings[1]);     // Close write end of pipe 3
+        close(arr_pallindromes[0]);      // Close read end of pipe 4
         
-        char name[10][20];          // Declare array to store names
+        char name[10][20];          // Declare array to store strings
         int count = 0;              // Initialize count variable
         
-        read(size_pipe[0], &count, sizeof(count));  // Read count of names from pipe
-        read(arr_pipe[0], &name, sizeof(name));     // Read names from pipe
+        read(no_of_input[0], &count, sizeof(count));        // Read count of strings from pipe
+        read(arr_input_strings[0], &name, sizeof(name));     // Read strings from pipe
         
         char palindromes[10][20];   // Declare array to store palindromes
         int pal_count = 0;          // Initialize palindrome count
@@ -61,35 +61,35 @@ int main()
                 }
             }
         
-        write(size_pipe_2[1], &pal_count, sizeof(pal_count));       // Write palindrome count to pipe
-        write(arr_pipe_2[1], &palindromes, sizeof(palindromes));    // Write palindromes to pipe
+        write(no_of_pal[1], &pal_count, sizeof(pal_count));               // Write palindrome count to pipe
+        write(arr_pallindromes[1], &palindromes, sizeof(palindromes));    // Write palindromes to pipe
         } 
     else 
         { // Parent process
-        close(size_pipe[0]);        // Close read end of pipe 1
-        close(size_pipe_2[1]);      // Close write end of pipe 2
-        close(arr_pipe[0]);         // Close read end of pipe 3
-        close(arr_pipe_2[1]);       // Close write end of pipe 4
+        close(no_of_input[0]);               // Close read end of pipe 1
+        close(no_of_pal[1]);                 // Close write end of pipe 2
+        close(arr_input_strings[0]);         // Close read end of pipe 3
+        close(arr_pallindromes[1]);          // Close write end of pipe 4
         
-        int count = 0;                                                  // Declare variable to store count of names
-        printf("Enter no of names:\n");                                 // Prompt user to enter count of names
-        scanf("%d", &count);                                            // Read count of names from user
+        int count = 0;                                                  // Declare variable to store count of strings
+        printf("Enter no of strings:\n");                                 // Prompt user to enter count of strings
+        scanf("%d", &count);                                            // Read count of strings from user
         
-        write(size_pipe[1], &count, sizeof(count));                     // Write count of names to pipe
-        printf("Enter names:\n");                                       // Prompt user to enter names
+        write(no_of_input[1], &count, sizeof(count));                   // Write count of strings to pipe
+        printf("Enter strings:\n");                                       // Prompt user to enter strings
         
-        char name[10][20];                                              // Declare array to store names
+        char name[10][20];                                              // Declare array to store strings
         for(int i = 0; i < count; i++)                                  // Loop through each name
             {scanf("%s", name[i]);}                                     // Read name from user
         
-        write(arr_pipe[1], &name, sizeof(name));                        // Write names to pipe
+        write(arr_input_strings[1], &name, sizeof(name));               // Write strings to pipe
         
         int pal_count;                                                  // Declare variable to store palindrome count
-        read(size_pipe_2[0], &pal_count, sizeof(pal_count));            // Read palindrome count from pipe
+        read(no_of_pal[0], &pal_count, sizeof(pal_count));              // Read palindrome count from pipe
         printf("The no of palindromes in the sequence is: %d\n", pal_count);  // Print palindrome count
         
         char palindromes[10][20];                                       // Declare array to store palindromes
-        read(arr_pipe_2[0], &palindromes, sizeof(palindromes));         // Read palindromes from pipe
+        read(arr_pallindromes[0], &palindromes, sizeof(palindromes));   // Read palindromes from pipe
         printf("The palindromes are:\n");                               // Print header for palindromes
         for(int i = 0; i < pal_count; i++) 
             {                                                           // Loop through each palindrome
