@@ -23,7 +23,7 @@
         scanf("%d", &time_slot);
         //Total indicates total time
         //current_process indicates which process is executed
-        int total = 0,  current_process = 0,i;
+        int total = 0, current_process = 0, i;
         printf("Process ID       Burst Time       Arrival Time       Turnaround Time      Waiting Time\n");
         for(total=0, i = 0; processes_left!=0; )  
         {  
@@ -39,11 +39,13 @@
                 temp_burst_time[i] = temp_burst_time[i] - time_slot;  
                 total  += time_slot;    
             }  
+
+            //If process is completed
             if(temp_burst_time[i]==0 && current_process==1)  
             {
                 processes_left--; //decrement the process no.  
                 printf("\nProcess No %d  \t\t %d\t\t%d\t\t %d\t\t\t %d", i+1, burst_time[i],arr_time[i],total-arr_time[i], total-arr_time[i]-burst_time[i]);  
-                wait_time = wait_time+total-arr_time[i]-burst_time[i];  
+                wait_time = wait_time+total-(arr_time[i]+burst_time[i]);  
                 ta_time += total -arr_time[i];
                 current_process =0;     
             }  
