@@ -48,7 +48,7 @@ int main()
     for(i=1; i<n; i++)
         {
             int temp=0;
-            if(arrival_time[i]>completion_time[i-1])
+            if(arrival_time[i]>completion_time[i-1])                        //if next process arrives way after completion of current process 
                 {temp=arrival_time[i]-completion_time[i-1];}
             completion_time[i]=completion_time[i-1]+burst_time[i]+temp;
         }
