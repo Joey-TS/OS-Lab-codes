@@ -27,14 +27,14 @@ if (dest<0)
 	}
 	
 int filesize=lseek(source,(off_t) 0,SEEK_END);
-for (int i=filesize-1;i>0;i--)
+for (int i=filesize-1;i>=0;i--)
 	{
 	lseek(source,(off_t) i,SEEK_SET);
 	read(source,&buff,1);
 	write(dest,&buff,1);
 	}
 	
-printf("The file has been reversed successfully");
+printf("The file has been reversed successfully\n");
 close(source);
 close(dest);
 
