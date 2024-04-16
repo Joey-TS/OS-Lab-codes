@@ -1,0 +1,4 @@
+IPC: create a parent process “bank” and a child process “client”. 
+Bank should generate a 6 digit OTP and pass to client. 
+Client will convert digits to words (1 -> “One”) and send to bank. 
+Bank will read and verify.
