@@ -28,13 +28,16 @@
         for(total=0, i = 0; processes_left!=0; )  
         {  
             // define the conditions
-            if(temp_burst_time[i] <= time_slot && temp_burst_time[i] > 0)    
+
+            //burst time of process < time quantum
+            if(temp_burst_time[i] <= time_slot && temp_burst_time[i] > 0)
             {  
                 total = total + temp_burst_time[i];  
                 temp_burst_time[i] = 0;  
                 current_process=1;  
             }     
-            else if(temp_burst_time[i] > 0)  
+            //normal process
+            else if(temp_burst_time[i] > 0)
             {  
                 temp_burst_time[i] = temp_burst_time[i] - time_slot;  
                 total  += time_slot;    

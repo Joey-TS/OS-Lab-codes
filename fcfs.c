@@ -22,6 +22,8 @@ int main()
     int i;
     waiting_time[0]=0;
 
+
+    //Sort processes based on arrival time
     for (i=0; i<n; i++)
         {
             for(int j=0; j<n-1; j++)

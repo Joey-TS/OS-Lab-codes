@@ -8,7 +8,7 @@ struct process a[10];
 
 int main()
 {
-    int n,temp[10];
+    int n,temp[10];  //temp is used to store the original burst time value
     int count=0,t=0,short_P;
     float total_WT=0, total_TAT=0,Avg_WT,Avg_TAT;
     printf("Enter number of processes\n");
